@@ -17,49 +17,54 @@ import javax.swing.ImageIcon;
  * @author 628953
  */
 public class Character {
-  //Fields
-    private int size;
-    private int x;
-    private int y;
-    private int dx;
-    private int dy;
+   //Fields
+    protected int size;
+    protected int x;
+    protected int y;
+    protected int vx;
+    protected int vy;
     private ImageIcon ii;
     private Image img;
-    private Rectangle bound;
-    private Color color;
-   
+    protected Color color;
+    protected Rectangle bound;
+    
+    
+    
+
     //Constructor
     public Character() {
-        size = 50;
+        size = 75;
         color = Color.RED;
-        x = 500;
-        y = 500;
-        dx = 3;
-        dy = 3;
+        x = 400;
+        y = 400;
+        vx = 4;
+        vy = 4;
     }
-
-public Character (int x, int y, String imgSrc) {
-    size = 50;
-    color = Color.RED;
-    this.x = x;
-    this.y = y;
-    dx = 0;
-    dy = 0;
-    ii = new ImageIcon(getClass().getResource(imgSrc));
-    img = ii.getImage();
-    bound = new Rectangle(this.x, this.y, this.size, this.size);
+    
+    
+    public Character(int x, int y, String imgSrc) {
+        color = Color.RED;
+        this.x = x;
+        this.y = y;
+        vx = 4;
+        vy = 4;
+        bound = new Rectangle(this.x, this.y, 60, 50);
     }
-
-    //Methods
- public void draw(Graphics g) {
+     public Rectangle getBound() {
+        return bound;
+    }
+     
+    public void draw(Graphics g) {
         g.drawImage(img, x, y, size, size, null);
         Graphics2D g2d = (Graphics2D) g;
         g2d.draw(bound);
     }
-  public void update() {
-        x += dx;
-        y += dy;
-       
+    
+    public void update() {
+        x += vx;
+        y += vy;
+        bound = new Rectangle(this.x, this.y, 60, 50);
+         
     }
     
     public void moveTo() {
@@ -69,28 +74,26 @@ public Character (int x, int y, String imgSrc) {
     public void shoot() {
         
     }
-    
+  
     public void die() {
         x = -500;
         y = -500;
     }
-    
-    public void kill() {
-        
-    }
-    
-    public void respawn() {
-        
-    }
-    
-    //Getters and Setters
-
-    public int getSize() {
+   
+     public int getSize() {
         return size;
     }
 
     public void setSize(int size) {
         this.size = size;
+    }
+    
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
     
     public int getX() {
@@ -109,21 +112,22 @@ public Character (int x, int y, String imgSrc) {
         this.y = y;
     }
 
-    public int getDx() {
-        return dx;
+    public int getVx() {
+        return vx;
     }
 
-    public void setDx(int dx) {
-        this.dx = dx;
+    public void setVx(int vx) {
+        this.vx = vx;
     }
 
-    public int getDy() {
-        return dy;
+    public int getVy() {
+        return vy;
     }
 
-    public void setDy(int dy) {
-        this.dy = dy;
+    public void setVy(int vy) {
+        this.vy = vy;
     }
+    
 
 
 

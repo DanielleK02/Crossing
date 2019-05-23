@@ -13,30 +13,34 @@ import javax.swing.ImageIcon;
  *
  * @author 628953
  */
-public class Road extends Character {
-     
-private int size;
+public class Car6 extends Character {
+      private int size;
 private ImageIcon ii;
 private Image img;
  
- 
 
 
-public Road(int size) {
-this.size = size;
-this.ii = new ImageIcon(getClass().getResource("/images/road.gif"));
-this.img = ii.getImage();
+public Car6(int size) {
+
+
 }
 
- Road(int x, int y) {
-     this(450);   
-     this.x = x;
-     this.y = y;
+ Car6(int x, int y) {
+    super(-200, 550, "/images/red.png"); 
+    this.size = 90;
+    this.ii = new ImageIcon(getClass().getResource("/images/red.png"));
+    this.img = ii.getImage(); 
+    this.x = -200;
+    this.y = 550;
+    
+     
+     vx = (int) (Math.random()* 2+ vx);
+     vy = 0;
    
     }
 
-    Road() {
-        this(200); //To change body of generated methods, choose Tools | Templates.
+    Car6() {
+        this(80); //To change body of generated methods, choose Tools | Templates.
     }
 
 
@@ -47,5 +51,4 @@ public void draw(Graphics g) {
 g.drawImage(img, x, y, size, size, null);
 
 }
-          
 }
